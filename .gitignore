@@ -1,3 +1,16 @@
+# 가상환경
 venv/
+
+# 캐시
 __pycache__/
-*.log
+*.pyc
+
+# 로그
+logs/
+
+# 빌드/패키지
+*.egg-info/
+
+# 환경변수
+.env
+cfg/targets.yaml
