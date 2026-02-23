@@ -1,0 +1,91 @@
+﻿# 하나의 item이 하나의 예약 대상(job)
+# interval_seconds: 이 주기로 감시 실행
+
+jobs:
+  - name: "interpark_anseong"
+    enabled: true
+    adapter: "interpark_anseong"
+    base_url: "https://tickets.interpark.com/goods/20004468"
+    interval_seconds: 30
+    credentials:
+      username: "YOUR_INTERPARK_ID"
+      password: "YOUR_INTERPARK_PW"
+    criteria:
+      check_in: "2026-05-16"
+      nights: 1
+      guests: 4
+      preferred_zone: "DECK"
+      preferred_sites: ["A-12", "A-11", "B-03"]
+      discount_value: "NONE"
+      bank_code: "BANK_004"
+      manual_login_fallback: true
+      # login_url: "https://accounts.interpark.com/..."
+      captcha_mode: "manual"
+      personal_info:
+        birth: "900101"
+        car_number: "12가3456"
+      selectors:
+        login_button:
+          - "button:has-text('로그인')"
+          - "a:has-text('로그인')"
+
+        username_input:
+          - "input[name='userId']"
+          - "input#userId"
+          - "input[placeholder*='아이디']"
+
+        password_input:
+          - "input[name='userPwd']"
+          - "input#userPwd"
+          - "input[type='password']"
+
+        submit_login_button:
+          - "button[type='submit']"
+          - "button:has-text('로그인')"
+          - "a:has-text('로그인')"
+
+        popup_close_buttons:
+          - "button:has-text('닫기')"
+          - ".popup-close"
+          - ".btn_close"
+
+        check_in_input: "input[name='checkInDate']"
+        nights_select: "select[name='nights']"
+        guests_select: "select[name='guests']"
+        search_button: "button:has-text('조회')"
+
+        booking_page_button: "button:has-text('예매하기')"
+
+        anti_bot_input: "input[name='captcha']"
+        anti_bot_submit: "button:has-text('확인')"
+
+        site_item: ".deck-list .deck-item"
+        site_name: ".deck-name"
+        site_select_button: "button:has-text('선택')"
+
+        discount_select: "select[name='discount']"
+        birth_input: "input[name='birth']"
+        car_number_input: "input[name='carNo']"
+
+        bank_transfer_radio: "input[value='BANK_TRANSFER']"
+        bank_select: "select[name='bankCode']"
+
+        agree_checkboxes:
+          - "#agreeAll"
+
+        submit_reservation_button: "button:has-text('결제하기')"
+
+  - name: "weekend_site_a"
+    enabled: false
+    adapter: "mock"
+    base_url: "https://example-camp-a.com"
+    interval_seconds: 20
+    credentials:
+      username: "YOUR_ID"
+      password: "YOUR_PW"
+    criteria:
+      check_in: "2026-05-16"
+      nights: 1
+      guests: 4
+      preferred_zones: ["A", "B"]
+
